@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+
+
+int siralidizi(int dizi[],int N){
+     int i,k,g;
+     for(i=0;i<N;i++){
+         for(k=i;k<N;k++){
+             if(dizi[k]<dizi[i]){
+                 g=dizi[k];
+                 dizi[k]=dizi[i];
+                 dizi[i]=g;
+                 }
+             }
+     }
+return dizi;
+}
+int ikiliarama(int dizi[], int aranan, int N)
+{
+    int sayac=0;
+    int ilk = 0;
+    int son = N-1;
+    int i=0;
+
+  while (ilk <= son)
+ {
+    i = (ilk + son)/2;
+    if (dizi[i] == aranan)
+    {
+        return sayac;
+        break;
+    }
+    else if (dizi[i] > aranan){
+     	son = i - 1;
+        }
+        else{
+    	ilk = i + 1;
+        }
+
+    sayac++;
+  }
+return sayac;
+}
+
+int main(int argc, char *argv[]) {
+	int aranan, N;
+	srand(time(NULL));
+	aranan = rand()%1000;
+	printf("Dizinin eleman sayisini girin(N)= ");
+	scanf("%d",&N);
+	int dizi[N];
+    int i;
+    srand(time(NULL));
+    for(i=0; i<N; i++){
+        dizi[i]=rand()%1000;
+    }
+
+   int sonuc=ikiliarama(siralidizi(dizi,N), aranan, N);
+   printf("Toplam iterasyon sayisi=%d", sonuc);
+   system("PAUSE");
+
+    return 0;
+}
